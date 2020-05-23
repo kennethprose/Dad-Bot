@@ -17,6 +17,7 @@ You need to know your public IP address, the local IP address of the machine you
 Set up port forwarding on your router to forward all packets aimed at your chosen port number to the IP of the machine you will use.
 
 [Create a new bot](https://dev.groupme.com/bots/new) - The callback URL must be in the following form: http://[Public IP]:[Port Number]
+
 Take note of the Bot ID generated after you create the bot.
 
 ### Installing
