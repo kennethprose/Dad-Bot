@@ -8,7 +8,7 @@
 
 __author__ = "Kenneth Rose"
 __date__ = "5/23/20"
-__version__ = "1.0"
+__version__ = "1.1"
 
 from socket import *
 import sys
@@ -51,7 +51,8 @@ def reply(connectionSocket):
             i_mIndexApple = message.casefold().index("i’m ")
         except:
             i_mIndexApple = -1
-        if imIndex != -1:
+            
+        if imIndex != -1 and (message[imIndex - 1] == " " or (imIndex - 1) == -1):
             name = message[imIndex + 3:userIdIndex]
             if name[0] == " ":
                 name = name[1:]
@@ -65,7 +66,7 @@ def reply(connectionSocket):
             r = requests.post('https://api.groupme.com/v3/bots/post', data)
             print(response)
 
-        if i_mIndex != -1:
+        if i_mIndex != -1 and (message[i_mIndex - 1] == " " or (i_mIndex - 1) == -1):
             name = message[i_mIndex + 4:userIdIndex]
             if name[0] == " ":
                 name = name[1:]
@@ -79,7 +80,7 @@ def reply(connectionSocket):
             r = requests.post('https://api.groupme.com/v3/bots/post', data)
             print(response)
 
-        if i_mIndexApple != -1:
+        if i_mIndexApple != -1 and (message[i_mIndexApple - 1] == " " or (i_mIndexApple - 1) == -1):
             name = message[i_mIndexApple + 4:userIdIndex]
             if name[0] == " ":
                 name = name[1:]
