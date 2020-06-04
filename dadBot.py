@@ -7,8 +7,8 @@
 """
 
 __author__ = "Kenneth Rose"
-__date__ = "5/23/20"
-__version__ = "1.1"
+__date__ = "6/4/20"
+__version__ = "1.2"
 
 from socket import *
 import sys
@@ -20,7 +20,6 @@ import requests
 # FILL THIS OUT
 #
 botID = "[Replace with Bot ID]"
-botName = "[Replace this with the name you gave your bot]" # Ex. "Dad Bot"
 machineIP = "[Replace with your local machine IP address]" # Ex. "192.168.0.1"
 portNumber = 1111 # You can change this
 #
@@ -33,9 +32,8 @@ serverSocket.listen(5)
 
 def reply(connectionSocket):
     post = connectionSocket.recv(4096).decode()
-    nameIndex = post.index('"name":')
-    senderName = post[nameIndex+8:nameIndex+16]
-    if senderName != botName:
+    senderIndex = post.index('"sender_type":')
+    if post[senderIndex+15:senderIndex+18] != "bot":
         textIndex = post.index('"text":') + 8
         userIdIndex = post.index(',"user_id"') - 1
         message = post[textIndex:userIdIndex]
@@ -51,6 +49,10 @@ def reply(connectionSocket):
             i_mIndexApple = message.casefold().index("i’m ")
         except:
             i_mIndexApple = -1
+        try:
+            i_amIndex = message.casefold().index("i am ")
+        except:
+            i_amIndex = -1
             
         if imIndex != -1 and (message[imIndex - 1] == " " or (imIndex - 1) == -1):
             name = message[imIndex + 3:userIdIndex]
@@ -87,6 +89,20 @@ def reply(connectionSocket):
             if name[-1:] == " ":
                 name = name[:-1]
             response = "Hi " + name + ", I'm Dad"
+            data = {
+                "bot_id": botID,
+                "text": response
+            }
+            r = requests.post('https://api.groupme.com/v3/bots/post', data)
+            print(response)
+            
+        if i_amIndex != -1 and (message[i_amIndex - 1] == " " or (i_amIndex - 1) == -1):
+            name = message[i_amIndex + 5:userIdIndex]
+            if name[0] == " ":
+                name = name[1:]
+            if name[-1:] == " ":
+                name = name[:-1]
+            response = "Hi " + name + ", I'm Adam"
             data = {
                 "bot_id": botID,
                 "text": response
