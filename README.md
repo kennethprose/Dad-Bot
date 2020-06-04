@@ -65,4 +65,4 @@ python3 dadBot.py
 
 ## Veriosn
 
-1.1
+1.2
