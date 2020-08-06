@@ -4,7 +4,7 @@ DadBot is a GroupMe bot designed to reply to messages with the oldest dad joke i
 
 For example,
 
-    Son: "Dad i'm hungry"
+    Son: "Dad I'm hungry"
     Dad: "Hi hungry, I'm Dad"
 
 ## Getting Started
