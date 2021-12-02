@@ -4,65 +4,75 @@ DadBot is a GroupMe bot designed to reply to messages with the oldest dad joke i
 
 For example,
 
-    Son: "Dad I'm hungry"
+    Son: "Dad, I'm hungry"
     Dad: "Hi hungry, I'm Dad"
 
 ## Getting Started
 
-These instructions will get the bot up and running on your local machine. These instructions are written for a Linux machine.
+These instructions will get the bot up and running on your local machine.
 
-### Prerequisites
+## Prerequisites
 
-You need to know your public IP address, the local IP address of the machine you will run the script on, and the port number you wish to use.
-Set up port forwarding on your router to forward all packets aimed at your chosen port number to the IP of the machine you will use.
+You'll need to know:
 
-[Create a new bot](https://dev.groupme.com/bots/new) - The callback URL must be in the following form: http://[Public IP]:[Port Number]
+- Your public IP
+- The local IP of the machine the bot will run on
+- An unused port
+
+You will also have to set up port forwarding on your router to direct all packets aimed at your chosen port number to the IP of your host machine.
+
+[Create a new bot](https://dev.groupme.com/bots/new) - The callback URL must be in the following form:
+
+```
+http://[Public_IP]:[Port_Number]
+```
 
 Take note of the Bot ID generated after you create the bot.
 
-### Installing
+## Installing
 
-What you need to install on your system.
+You must have [Python](https://www.python.org/) installed.
 
-You must have python3 installed
+You will also need Python [Requests](https://docs.python-requests.org/en/latest/). You can install Requests using [pip](https://pypi.org/project/pip/).
+
+Finally, download the source files. The location does not matter.
+
+## Configure
+
+Open the config.json file in a text editor.
+
+You must set these values:
+
+- bot_id - The ID that was generated after creating the bot. You can find it again [here](https://dev.groupme.com/bots).
+- machine_ip - The host machine's local IP address. (Ex. 192.168.0.100)
+- port_num - The port number you want to use. (Default: 1111)
+
+Once you have changed these values, save and close the file.
+
+## Starting the bot
+
+Open a terminal and navigate to the directory where you downloaded the source files.
+
+Run the following command:
 
 ```
-sudo apt install python3.8
+python dadBot.py
 ```
 
-Install dateutil
+or
 
-```
-pip install python-dateutil
-```
-
-Finally, download the dadBot.py file. The file location does not matter.
-
-### Configure
-
-Open the dadBot.py file in a text editor.
-
-You must change the variables in the section beggining on line 22.
-* botID - The ID that was generated after creating the bot
-* botName - What you named your bot when creating the bot
-* machineIP - Your machines local IP address
-* portNumber - The port number you want to use.
-
-Once you have changed the four variables, save and close the file.
-
-### Starting the bot
-
-Open a terminal and navigate to the directory where you downloaded the dadBot.py file.
-
-Run the following command
 ```
 python3 dadBot.py
 ```
 
+## Help
+
+If you have any issues installing or running the bot, feel free to reach out to me or create a new issue. I will do my best to reply.
+
 ## Authors
 
-* **Kenneth Rose**
+- **Kenneth Rose**
 
 ## Veriosn
 
-1.2
+1.3
